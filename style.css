@@ -14,13 +14,12 @@ body {
 
 /* -------------------- Cấu trúc Phong bì (Trạng thái Đóng) -------------------- */
 .envelope-wrapper {
-    width: 450px; /* PHONG BÌ TO HƠN */
+    width: 450px; 
     height: 320px;
     position: relative;
     cursor: pointer;
     transition: all 0.5s ease-in-out; 
     z-index: 20; 
-    /* TRANG TRÍ THÊM CHO PHONG BÌ */
     border-radius: 10px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     background-color: #f7f7f7; 
@@ -65,12 +64,13 @@ body {
 
 /* Nội dung Thư (Phần zoom-in) */
 .letter-content {
-    width: 90%; /* KÍCH THƯỚC BỨC THƯ NHỎ HƠN */
+    /* Điều chỉnh kích thước ban đầu nhỏ và ẩn */
+    width: 90%; 
     height: 90%;
     position: absolute;
     top: 50%; 
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.1); /* ẨN */
+    transform: translate(-50%, -50%) scale(0.1); 
     background-color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     z-index: 1; 
@@ -95,14 +95,14 @@ body.open .envelope-flap {
 }
 
 body.open .letter-content {
-    /* ĐÃ SỬA LỖI TỶ LỆ ZOOM */
-    transform: translate(-50%, -50%) scale(2.0); /* TỶ LỆ PHÓNG TO VỪA VẶN MÀN HÌNH */
+    /* GIẢI PHÁP CUỐI CÙNG: Không dùng scale, dùng kích thước màn hình */
+    transform: translate(-50%, -50%) scale(1); /* Đặt lại scale(1) để không còn phóng to */
     opacity: 1;
     position: fixed; 
     top: 50%;
     left: 50%;
-    width: 90%; 
-    height: 90%;
+    width: 100vw; /* Lấp đầy chiều rộng màn hình */
+    height: 100vh; /* Lấp đầy chiều cao màn hình */
     z-index: 30; 
 }
 
