@@ -9,32 +9,26 @@ body {
     margin: 0;
     background: linear-gradient(135deg, #f0e68c, #ffc0cb);
     perspective: 1000px; /* Cần thiết cho hiệu ứng 3D */
-    padding: 20px;
+    overflow: hidden; /* Quan trọng để ẩn nội dung ngoài màn hình */
 }
 
-/* -------------------- Cấu trúc Phong bì -------------------- */
+/* -------------------- Cấu trúc Phong bì (Trạng thái Đóng) -------------------- */
 .envelope-wrapper {
     width: 350px;
     height: 250px;
     position: relative;
     cursor: pointer;
-    z-index: 10;
-    /* transition: transform 0.8s ease-in-out;  <-- Có thể bỏ qua */
+    transition: all 0.5s ease-in-out; 
+    z-index: 20; 
 }
 
-.envelope {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #f7f7f7; 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-/* Thân phong bì (Mặt sau) */
+/* Thân phong bì */
 .envelope-body {
     position: absolute;
     bottom: 0;
-    border-bottom: 250px solid #f2cfb6;
+    left: 0;
+    right: 0;
+    border-bottom: 250px solid #f2cfb6; 
     border-left: 175px solid transparent;
     border-right: 175px solid transparent;
     width: 0;
@@ -42,72 +36,85 @@ body {
     z-index: 2;
 }
 
-/* Nắp phong bì (Phần lật lên) */
+/* Nắp phong bì */
 .envelope-flap {
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     width: 0;
     height: 0;
     border-top: 125px solid #d3a487; 
     border-left: 175px solid transparent;
     border-right: 175px solid transparent;
-    transform-origin: top; /* Cần thiết để lật từ đỉnh */
-    transition: transform 0.8s ease-in-out;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
     z-index: 4;
 }
 
-/* Nội dung thư (Thiệp bên trong) */
-.envelope-letter {
+/* Nội dung Thư (Phần zoom-in) */
+.letter-content {
+    /* Đây là thẻ chứa toàn bộ nội dung thiệp */
     position: absolute;
     top: 0;
-    left: 10px;
-    right: 10px;
-    bottom: 0;
-    padding: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: white;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    transform: translateY(250px);
-    transition: transform 0.8s ease-in-out 0.4s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Nằm dưới phong bì */
+
+    /* TRẠNG THÁI ẨN */
+    opacity: 0; 
+    transform: scale(0.1); /* Rất nhỏ, không thấy gì */
+    transition: all 0.6s ease-in-out 0.4s; /* Chờ nắp mở trước */
+}
+
+.card {
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 /* -------------------- Hiệu ứng Mở thư (.open) -------------------- */
 
 .envelope-wrapper.open .envelope-flap {
+    /* Lật nắp phong bì */
     transform: rotateX(180deg); 
 }
 
-.envelope-wrapper.open .envelope-letter {
-    transform: translateY(20px); 
+.envelope-wrapper.open .letter-content {
+    /* PHÓNG TO VÀ HIỂN THỊ TOÀN MÀN HÌNH */
+    transform: scale(10); 
+    opacity: 1;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 30; 
 }
 
-.envelope-wrapper.open + .hint {
+/* Ẩn lời nhắc khi mở */
+.envelope-wrapper.open .hint {
     opacity: 0;
 }
 
-/* -------------------- Định dạng Thiệp bên trong -------------------- */
 
-.card {
-    width: 100%; 
-    padding: 25px;
-    box-sizing: border-box;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-}
-
+/* -------------------- Định dạng Nội dung Thiệp -------------------- */
 h1 {
     color: #e91e63;
     font-size: 1.5em;
     margin-bottom: 20px;
 }
 
-/* Định dạng cho tất cả các đoạn văn bản trong thư */
 .message-content {
     font-size: 0.95em; 
     line-height: 1.7;
     color: #333;
-    margin: 15px 0; /* Tạo khoảng cách giữa các đoạn */
+    margin: 15px 0; 
     padding: 0 5px;
     text-align: justify;
 }

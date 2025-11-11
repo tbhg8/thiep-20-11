@@ -8,30 +8,31 @@
 </head>
 <body>
     <div class="envelope-wrapper">
-        <div class="envelope">
-            <div class="envelope-flap"></div>
-            
-            <div class="envelope-letter">
-                <div class="card">
-                    <h1>🌸 Kính Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11 🌸</h1>
-                    <p class="message-content">
-                        Kính gửi các Thầy Cô giáo kính mến!
-                    </p>
-                    <p class="message-content">
-                        Nhân ngày 20/11, tập thể lớp 8C8 xin gửi lời tri ân sâu sắc nhất đến những người đã và đang chèo lái con thuyền tri thức. Công ơn của Thầy Cô lớn lao như trời biển.
-                    </p>
-                    <p class="message-content">
-                        Cảm ơn Thầy Cô đã dành hết tâm huyết và sự kiên nhẫn vô bờ bến. Từng lời giảng, từng ánh mắt khích lệ sẽ là hành trang quý giá nhất theo chúng em suốt cuộc đời. Kính chúc Thầy Cô luôn dồi dào sức khỏe và hạnh phúc!
-                    </p>
-                    <div class="footer">
-                        <p class="signature">Tập thể Lớp 8C8</p>
-                        <p class="date">Tháng 11, Năm 2025</p>
-                    </div>
+        
+        <div class="envelope-flap"></div>
+        
+        <div class="letter-content">
+            <div class="card">
+                <h1>🌸 Kính Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11 🌸</h1>
+                
+                <p class="message-content">
+                    Kính gửi các Thầy Cô giáo kính mến!
+                </p>
+                <p class="message-content">
+                    Nhân ngày 20/11, tập thể lớp 8C8 xin gửi lời tri ân sâu sắc nhất đến những người đã và đang chèo lái con thuyền tri thức. Công ơn của Thầy Cô lớn lao như trời biển.
+                </p>
+                <p class="message-content">
+                    Cảm ơn Thầy Cô đã dành hết tâm huyết và sự kiên nhẫn vô bờ bến. Từng lời giảng, từng ánh mắt khích lệ sẽ là hành trang quý giá nhất theo chúng em suốt cuộc đời. Kính chúc Thầy Cô luôn dồi dào sức khỏe và hạnh phúc!
+                </p>
+                
+                <div class="footer">
+                    <p class="signature">Tập thể Lớp 8C8</p>
+                    <p class="date">Tháng 11, Năm 2025</p>
                 </div>
             </div>
-            
-            <div class="envelope-body"></div>
         </div>
+        
+        <div class="envelope-body"></div>
         
         <p class="hint">Bấm vào thư để mở!</p>
     </div>
@@ -40,6 +41,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const envelope = document.querySelector('.envelope-wrapper');
             envelope.addEventListener('click', function() {
+                // Thêm class 'open' để kích hoạt hiệu ứng CSS
                 envelope.classList.toggle('open');
             });
         });
