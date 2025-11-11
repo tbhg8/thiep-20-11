@@ -1,0 +1,65 @@
+body {
+    /* Thiết lập font chữ và căn giữa thiệp */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Đảm bảo chiều cao tối thiểu để căn giữa theo chiều dọc */
+    min-height: 100vh; 
+    margin: 0;
+    /* Tạo nền gradient nhẹ nhàng, ấm áp */
+    background: linear-gradient(135deg, #f0e68c, #ffc0cb); 
+    padding: 20px; /* Thêm padding cho body để thiệp không dính sát mép trên thiết bị nhỏ */
+}
+
+.card {
+    /* Thiết lập kích thước, màu nền và hiệu ứng cho thiệp */
+    background-color: white;
+    padding: 50px; /* Tăng khoảng đệm để nội dung không bị sát viền */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 800px; /* Tăng chiều rộng tối đa của thiệp từ 600px lên 800px */
+    text-align: center;
+    border: 5px solid #e91e63; 
+}
+
+h1 {
+    /* Định dạng tiêu đề */
+    color: #e91e63;
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.message {
+    /* Định dạng nội dung lời chúc */
+    font-size: 1.1em;
+    line-height: 1.8; /* Tăng line-height giúp dễ đọc hơn với lời chúc dài */
+    color: #333;
+    margin: 30px 0;
+    padding: 0 20px; /* Tăng padding ngang để lời chúc không quá sát lề */
+    text-align: left; /* Căn lề trái cho đoạn văn bản dài */
+}
+
+.footer {
+    margin-top: 50px; /* Tăng khoảng cách từ nội dung đến chữ ký */
+    border-top: 1px solid #ccc;
+    padding-top: 25px;
+    text-align: right; /* Đẩy chữ ký sang phải cho trang trọng */
+}
+
+.signature {
+    /* Chữ ký */
+    font-style: italic;
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.1em;
+}
+
+.date {
+    /* Ngày tháng */
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 5px;
+}
