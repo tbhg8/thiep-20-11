@@ -8,7 +8,7 @@ body {
     min-height: 100vh;
     margin: 0;
     background: linear-gradient(135deg, #f0e68c, #ffc0cb);
-    perspective: 1000px;
+    perspective: 1000px; /* Cần thiết cho hiệu ứng 3D */
     padding: 20px;
 }
 
@@ -19,7 +19,7 @@ body {
     position: relative;
     cursor: pointer;
     z-index: 10;
-    transition: transform 0.8s ease-in-out; 
+    /* transition: transform 0.8s ease-in-out;  <-- Có thể bỏ qua */
 }
 
 .envelope {
@@ -51,5 +51,84 @@ body {
     border-top: 125px solid #d3a487; 
     border-left: 175px solid transparent;
     border-right: 175px solid transparent;
-    transform-origin: top;
-    transition: transform 0.8s ease-
+    transform-origin: top; /* Cần thiết để lật từ đỉnh */
+    transition: transform 0.8s ease-in-out;
+    z-index: 4;
+}
+
+/* Nội dung thư (Thiệp bên trong) */
+.envelope-letter {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    padding: 0;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transform: translateY(250px);
+    transition: transform 0.8s ease-in-out 0.4s;
+}
+
+/* -------------------- Hiệu ứng Mở thư (.open) -------------------- */
+
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg); 
+}
+
+.envelope-wrapper.open .envelope-letter {
+    transform: translateY(20px); 
+}
+
+.envelope-wrapper.open + .hint {
+    opacity: 0;
+}
+
+/* -------------------- Định dạng Thiệp bên trong -------------------- */
+
+.card {
+    width: 100%; 
+    padding: 25px;
+    box-sizing: border-box;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+h1 {
+    color: #e91e63;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho tất cả các đoạn văn bản trong thư */
+.message-content {
+    font-size: 0.95em; 
+    line-height: 1.7;
+    color: #333;
+    margin: 15px 0; /* Tạo khoảng cách giữa các đoạn */
+    padding: 0 5px;
+    text-align: justify;
+}
+
+.footer {
+    margin-top: 20px;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+    text-align: right;
+}
+
+.signature {
+    font-style: italic;
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.0em;
+}
+
+.hint {
+    margin-top: 30px;
+    font-style: italic;
+    color: #333;
+    transition: opacity 0.3s;
+}
