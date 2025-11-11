@@ -14,12 +14,20 @@ body {
 
 /* -------------------- Cấu trúc Phong bì (Trạng thái Đóng) -------------------- */
 .envelope-wrapper {
-    width: 350px;
-    height: 250px;
+    width: 450px; /* Tăng kích thước phong bì */
+    height: 320px;
     position: relative;
     cursor: pointer;
     transition: all 0.5s ease-in-out; 
     z-index: 20; 
+    /* Trang trí thêm cho phong bì */
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    background-color: #f7f7f7; /* Màu nền chính của phong bì */
+    /* Thêm hoa văn nhẹ cho phong bì */
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+    border: 2px solid #ccc; /* Thêm viền nhẹ */
 }
 
 /* Thân phong bì */
@@ -28,12 +36,15 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    border-bottom: 250px solid #f2cfb6; 
-    border-left: 175px solid transparent;
-    border-right: 175px solid transparent;
+    /* Điều chỉnh kích thước để phù hợp với phong bì lớn hơn */
+    border-bottom: 320px solid #f2cfb6; 
+    border-left: 225px solid transparent; /* Một nửa chiều rộng của wrapper */
+    border-right: 225px solid transparent;
     width: 0;
     height: 0;
     z-index: 2;
+    border-bottom-left-radius: 8px; /* Bo góc dưới */
+    border-bottom-right-radius: 8px;
 }
 
 /* Nắp phong bì */
@@ -44,69 +55,67 @@ body {
     right: 0;
     width: 0;
     height: 0;
-    border-top: 125px solid #d3a487; 
-    border-left: 175px solid transparent;
-    border-right: 175px solid transparent;
+    /* Điều chỉnh kích thước để phù hợp với phong bì lớn hơn */
+    border-top: 160px solid #d3a487; /* Một nửa chiều cao của wrapper */
+    border-left: 225px solid transparent; 
+    border-right: 225px solid transparent;
     transform-origin: top;
     transition: transform 0.5s ease-in-out;
     z-index: 4;
+    border-top-left-radius: 8px; /* Bo góc trên */
+    border-top-right-radius: 8px;
 }
 
 /* Nội dung Thư (Phần zoom-in) */
 .letter-content {
+    width: 90%; /* Giảm kích thước thư bên trong so với phong bì */
+    height: 90%;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%; /* Căn giữa */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1); /* Ban đầu nhỏ và căn giữa */
     background-color: white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     z-index: 1; 
-
-    /* TRẠNG THÁI ẨN */
     opacity: 0; 
-    transform: scale(0.1); 
+    border-radius: 8px; /* Bo góc thiệp */
     transition: all 0.6s ease-in-out 0.4s; 
 }
 
 .card {
-    padding: 30px;
+    padding: 25px; /* Giảm padding một chút */
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     text-align: center;
-    overflow-y: auto; /* Cho phép cuộn nếu nội dung quá dài sau khi zoom */
+    overflow-y: auto; 
 }
 
 /* -------------------- Hiệu ứng Mở thư (BODY.open) -------------------- */
 
 body.open .envelope-flap {
-    /* Lật nắp phong bì */
     transform: rotateX(180deg); 
 }
 
 body.open .letter-content {
-    /* PHÓNG TO VÀ HIỂN THỊ - ĐÃ SỬA LỖI TỶ LỆ ZOOM */
-    transform: scale(3.5); /* TỶ LỆ PHÙ HỢP CHO VIỆC ĐỌC */
+    /* Điều chỉnh scale cho phù hợp với kích thước thư mới */
+    transform: translate(-50%, -50%) scale(2.5); /* Giảm scale một chút */
     opacity: 1;
     position: fixed; 
     top: 50%;
     left: 50%;
-    /* Dùng translate để căn giữa sau khi scale */
-    transform: translate(-50%, -50%) scale(3.5); 
-    width: 350px; /* Giữ nguyên kích thước ban đầu */
-    height: 250px;
     z-index: 30; 
 }
 
 /* Lời nhắc (hint) */
 .hint {
     position: absolute; 
-    top: 55%; 
+    top: 60%; /* Điều chỉnh vị trí lời nhắc cho phong bì lớn hơn */
     z-index: 10;
     transition: opacity 0.3s;
-    font-size: 0.9em;
+    font-size: 1em; /* Tăng kích thước chữ lời nhắc */
     color: #444;
+    font-weight: bold;
 }
 
 /* Ẩn lời nhắc khi mở */
@@ -118,21 +127,21 @@ body.open .hint {
 /* -------------------- Định dạng Nội dung Thiệp -------------------- */
 h1 {
     color: #e91e63;
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    font-size: 1.6em; /* Tăng kích thước H1 một chút */
+    margin-bottom: 25px;
 }
 
 .message-content {
-    font-size: 0.95em; 
-    line-height: 1.7;
+    font-size: 0.9em; /* Giảm kích thước chữ trong thư */
+    line-height: 1.6;
     color: #333;
-    margin: 15px 0; 
+    margin: 12px 0; 
     padding: 0 5px;
     text-align: justify;
 }
 
 .footer {
-    margin-top: 20px;
+    margin-top: 25px; /* Tăng khoảng cách */
     border-top: 1px dashed #ccc;
     padding-top: 15px;
     text-align: right;
