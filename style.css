@@ -8,8 +8,8 @@ body {
     min-height: 100vh;
     margin: 0;
     background: linear-gradient(135deg, #f0e68c, #ffc0cb);
-    perspective: 1000px; /* Cần thiết cho hiệu ứng 3D */
-    overflow: hidden; /* Quan trọng để ẩn nội dung ngoài màn hình */
+    perspective: 1000px; 
+    overflow: hidden; 
 }
 
 /* -------------------- Cấu trúc Phong bì (Trạng thái Đóng) -------------------- */
@@ -54,7 +54,6 @@ body {
 
 /* Nội dung Thư (Phần zoom-in) */
 .letter-content {
-    /* Đây là thẻ chứa toàn bộ nội dung thiệp */
     position: absolute;
     top: 0;
     left: 0;
@@ -62,12 +61,12 @@ body {
     height: 100%;
     background-color: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 1; /* Nằm dưới phong bì */
+    z-index: 1; 
 
     /* TRẠNG THÁI ẨN */
     opacity: 0; 
-    transform: scale(0.1); /* Rất nhỏ, không thấy gì */
-    transition: all 0.6s ease-in-out 0.4s; /* Chờ nắp mở trước */
+    transform: scale(0.1); 
+    transition: all 0.6s ease-in-out 0.4s; 
 }
 
 .card {
@@ -76,29 +75,42 @@ body {
     height: 100%;
     box-sizing: border-box;
     text-align: center;
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung quá dài sau khi zoom */
 }
 
-/* -------------------- Hiệu ứng Mở thư (.open) -------------------- */
+/* -------------------- Hiệu ứng Mở thư (BODY.open) -------------------- */
 
-.envelope-wrapper.open .envelope-flap {
+body.open .envelope-flap {
     /* Lật nắp phong bì */
     transform: rotateX(180deg); 
 }
 
-.envelope-wrapper.open .letter-content {
-    /* PHÓNG TO VÀ HIỂN THỊ TOÀN MÀN HÌNH */
-    transform: scale(10); 
+body.open .letter-content {
+    /* PHÓNG TO VÀ HIỂN THỊ - ĐÃ SỬA LỖI TỶ LỆ ZOOM */
+    transform: scale(3.5); /* TỶ LỆ PHÙ HỢP CHO VIỆC ĐỌC */
     opacity: 1;
     position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 50%;
+    left: 50%;
+    /* Dùng translate để căn giữa sau khi scale */
+    transform: translate(-50%, -50%) scale(3.5); 
+    width: 350px; /* Giữ nguyên kích thước ban đầu */
+    height: 250px;
     z-index: 30; 
 }
 
+/* Lời nhắc (hint) */
+.hint {
+    position: absolute; 
+    top: 55%; 
+    z-index: 10;
+    transition: opacity 0.3s;
+    font-size: 0.9em;
+    color: #444;
+}
+
 /* Ẩn lời nhắc khi mở */
-.envelope-wrapper.open .hint {
+body.open .hint {
     opacity: 0;
 }
 
@@ -131,11 +143,4 @@ h1 {
     font-weight: bold;
     color: #007bff;
     font-size: 1.0em;
-}
-
-.hint {
-    margin-top: 30px;
-    font-style: italic;
-    color: #333;
-    transition: opacity 0.3s;
 }

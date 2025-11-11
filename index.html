@@ -33,16 +33,17 @@
         </div>
         
         <div class="envelope-body"></div>
-        
-        <p class="hint">Bấm vào thư để mở!</p>
-    </div>
+
+    </div> 
+    
+    <p class="hint">Bấm vào thư để mở!</p>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const envelope = document.querySelector('.envelope-wrapper');
             envelope.addEventListener('click', function() {
-                // Thêm class 'open' để kích hoạt hiệu ứng CSS
-                envelope.classList.toggle('open');
+                // Thêm class 'open' vào BODY thay vì wrapper
+                document.body.classList.toggle('open');
             });
         });
     </script>
